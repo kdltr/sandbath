@@ -1,0 +1,40 @@
+body {
+  max-width: 50em;
+  margin-left: auto;
+  margin-right: auto;
+}
+table {
+  font-family: sans;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+th {
+  height: 5ex;
+  background-color: orange;
+  color: white;
+}
+td, th {
+  padding: 0.5ex;
+}
+table, th, td {
+  border: 1px solid lightgray;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.pain {
+  min-width: 3em;
+  text-align: right;
+}
+.bug-id {
+  text-align: right;
+  min-width: 5em;
+}
+.title {
+  text-aligh: left;
+  min-width: 85%
+}
+.status {
+  min-width: 6em;
+}
