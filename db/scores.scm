@@ -20,3 +20,8 @@
          (raw-score (fold * 1 scores)))
     (inexact->exact (ceiling (* 100 (/ raw-score max-score))))))
 
+(define (score bug-id type)
+  (query
+   fetch-value
+   (sql (database) "select value from scores where bug_id = ? and type = ?;")
+   bug-id type))

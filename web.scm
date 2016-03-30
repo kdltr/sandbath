@@ -1,6 +1,7 @@
 (use spiffy sxml-transforms intarweb)
 
 (include "web/list.scm")
+(include "web/bug.scm")
 
 (define title (make-parameter ""))
 (define contents (make-parameter '()))
