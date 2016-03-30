@@ -1,4 +1,4 @@
-(define (list-page)
+(define (list-page bugs)
   (parameterize
       ((title "List of bugs")
        (contents
@@ -10,17 +10,19 @@
             (th (@ (scope col)) "Title")
             (th (@ (scope col)) "Status")))
           (tbody
-           ,@(list-entries))
+           ,@(list-entries bugs))
           )))
     (page-template)
     ))
 
-(define (list-entries)
-  (map format-row (list-bugs)))
+(define (list-entries bugs)
+  (map format-row bugs))
 
-(define (format-row r)
-  `(tr
-    (td (@ (class pain)) ,(alist-ref 'score r))
-    (td (@ (class bug-id)) ,(alist-ref 'id r))
-    (td (@ (class title)) ,(alist-ref 'title r))
-    (td (@ (class status)) "Open")))
+(define (format-row bug)
+  (let* ((ref (cut alist-ref <> bug))
+         (bug-link (lambda (text) `(a (@ (href (,(ref 'id) ".xhtml"))) ,text))))
+    `(tr
+      (td (@ (class pain)) ,(ref 'score))
+      (td (@ (class bug-id)) ,(bug-link (ref 'id)))
+      (td (@ (class title)) ,(bug-link (ref 'title)))
+      (td (@ (class status)) "Open"))))
