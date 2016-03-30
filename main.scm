@@ -27,3 +27,8 @@
         (insert-score bug-id "type" (add1 (random 7)))
         (insert-score bug-id "priority" (add1 (random 5)))
         (insert-score bug-id "likelihood" (add1 (random 5)))))))
+
+(define (write-page file page)
+  (with-output-to-file file
+    (lambda ()
+      (display (output-html page)))))
