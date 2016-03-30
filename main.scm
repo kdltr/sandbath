@@ -32,3 +32,13 @@
   (with-output-to-file file
     (lambda ()
       (display (output-html page)))))
+
+(define (generate-all-pages)
+  (let ((bugs (list-bugs)))
+    (write-page "index.xhtml" (list-page bugs))
+    (for-each
+     (lambda (bug)
+       (write-page
+        (string-append (number->string (alist-ref 'id bug)) ".xhtml")
+        (bug-page bug)))
+     bugs)))
