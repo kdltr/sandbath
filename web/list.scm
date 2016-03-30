@@ -25,4 +25,4 @@
       (td (@ (class pain)) ,(ref 'score))
       (td (@ (class bug-id)) ,(bug-link (ref 'id)))
       (td (@ (class title)) ,(bug-link (ref 'title)))
-      (td (@ (class status)) "Open"))))
+      (td (@ (class status)) ,(latest-status (ref 'id))))))

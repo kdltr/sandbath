@@ -17,6 +17,7 @@
 (include "db/accounts.scm")
 (include "db/bugs.scm")
 (include "db/scores.scm")
+(include "db/statuses.scm")
 
 (define (all-bugs-with-score)
   (map
