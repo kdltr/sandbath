@@ -3,6 +3,12 @@
 (database (open-database (database-file)))
 (accounts-database (open-database (accounts-file)))
 
+(include "db/accounts.scm")
+(include "db/sessions.scm")
+(include "db/bugs.scm")
+(include "db/scores.scm")
+(include "db/statuses.scm")
+
 (define max-score
   (fold
    (lambda (type acc) (* acc (length (cadr type))))
@@ -11,13 +17,9 @@
 
 (define (initialize)
   (initialize-accounts)
+  (initialize-sessions)
   (initialize-scores)
   (initialize-bugs))
-
-(include "db/accounts.scm")
-(include "db/bugs.scm")
-(include "db/scores.scm")
-(include "db/statuses.scm")
 
 (define (all-bugs-with-score)
   (map

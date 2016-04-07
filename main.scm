@@ -1,4 +1,4 @@
-(use crypt)
+(use crypt spiffy spiffy-cookies spiffy-uri-match intarweb anaphora random-bsd uuid)
 
 (define database-file
   (make-parameter #f))
@@ -42,3 +42,26 @@
         (string-append (number->string (alist-ref 'id bug)) ".xhtml")
         (bug-page bug)))
      bugs)))
+
+(define (new-session-id)
+  (uuid-v4 random-integer))
+
+(randomize/device)
+(root-path ".")
+
+(vhost-map
+ `(((: (* any)) .
+    ,(uri-match/spiffy
+      `(((/ "api")
+         ((/ "login")
+          (GET ,api-login-get)
+          (POST ,api-login-post)))
+        ((/ "")
+         (GET ,(lambda (c) (c)))))))))
+
+(access-log (current-error-port))
+(error-log (current-error-port))
+(debug-log (current-error-port))
+
+;; (generate-all-pages)
+;; (start-server)

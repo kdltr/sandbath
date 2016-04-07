@@ -2,16 +2,19 @@
   (parameterize
       ((title "List of bugs")
        (contents
-        `(table
-          (thead
-           (tr
-            (th (@ (scope col)) "Pain")
-            (th (@ (scope col)) "Bug #")
-            (th (@ (scope col)) "Title")
-            (th (@ (scope col)) "Status")))
-          (tbody
-           ,@(list-entries bugs))
-          )))
+        `((iframe (@ (src "/api/login")
+                     (seamless "1")
+                     (sandbox "allow-forms")))
+          (table
+           (thead
+            (tr
+             (th (@ (scope col)) "Pain")
+             (th (@ (scope col)) "Bug #")
+             (th (@ (scope col)) "Title")
+             (th (@ (scope col)) "Status")))
+           (tbody
+            ,@(list-entries bugs))
+           ))))
     (page-template)
     ))
 
