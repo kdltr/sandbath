@@ -19,7 +19,8 @@
   (initialize-accounts)
   (initialize-sessions)
   (initialize-scores)
-  (initialize-bugs))
+  (initialize-bugs)
+  (initialize-statuses))
 
 (define (all-bugs-with-score)
   (map
